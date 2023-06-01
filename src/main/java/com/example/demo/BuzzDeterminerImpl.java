@@ -10,9 +10,7 @@ public class BuzzDeterminerImpl implements BuzzDeterminer {
     @Override
     public boolean isPositive(int n) {
 
-        if (n % 5 == 0) {
-            return true;
-        }
-        return false;
+        return n % 5 == 0;
+
     }
 }
