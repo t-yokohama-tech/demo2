@@ -3,14 +3,14 @@ package com.example.demo;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BuzzDeterminerImpl implements BuzzDeterminer {
+public class FizzDeterminerImpl implements FizzDeterminer {
 
-    //nが5の倍数の時にTrueを返す。
+    //nが3の倍数の時にTrueを返す。
 
     @Override
     public boolean isPositive(int n) {
 
-        return n % 5 == 0;
+        return n % 3 == 0;
 
     }
 }

@@ -1,7 +1,9 @@
 package com.example.demo;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
 
+@Component
 @AllArgsConstructor
 public class FizzBuzzImpl implements FizzBuzz {
 

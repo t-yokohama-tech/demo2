@@ -1,9 +1,8 @@
 package com.example.demo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class FizzBuzzFormatterImpl implements FizzBuzzFormatter{
 
     @Override
