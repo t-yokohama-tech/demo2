@@ -1,8 +1,14 @@
 package com.example.demo;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
 public class FizzBuzzFormatterImplTest {
@@ -11,28 +17,22 @@ public class FizzBuzzFormatterImplTest {
     private final FizzBuzzFormatter fizzBuzzFormatter = new FizzBuzzFormatterImpl();
 
 
-    // 3の倍数かつ5の倍数：”FizzBuzz”を返す。
-    @Test
-    void FizzBuzzRtnTest() {
-        assertEquals("FizzBuzz",fizzBuzzFormatter.format(true,true));
+    static Stream<Arguments> fizzBuzzFormatter() {
+        return Stream.of(
+                arguments("FizzBuzz", true, true),// 3の倍数かつ5の倍数：”FizzBuzz”を返す。
+                arguments("Fizz", true, false),// 3の倍数のみ：”Fizz”を返す。
+                arguments("Buzz", false, true),// 5の倍数のみ：”Buzz”を返す。
+                arguments("", false, false)// 3の倍数でも5の倍数でもない：””を返す。
+
+        );
+    }
+    // 上記４つのパターンを１メソッドでテスト。
+    @ParameterizedTest
+    @MethodSource("fizzBuzzFormatter")
+    void RtnTest(String expected, boolean fizz, boolean buzz) {
+        assertEquals(expected,fizzBuzzFormatter.format(fizz, buzz));
     }
 
-    // 3の倍数のみ：”Fizz”を返す。
-    @Test
-    void FizzRtnTest() {
-        assertEquals("Fizz",fizzBuzzFormatter.format(true,false));
-    }
 
-    // 5の倍数のみ：”Buzz”を返す。
-    @Test
-    void BuzzRtnTest() {
-        assertEquals("Buzz",fizzBuzzFormatter.format(false,true));
-    }
-
-    // 3の倍数でも5の倍数でもない：””を返す。
-    @Test
-    void nonRtnTest() {
-        assertEquals("",fizzBuzzFormatter.format(false,false));
-    }
 
 }
