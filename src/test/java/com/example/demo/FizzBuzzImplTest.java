@@ -10,8 +10,8 @@ public class FizzBuzzImplTest {
 
     int n;
     private final FizzDeterminer fizzDeterminer = mock(FizzDeterminer.class);
-    private final BuzzDeterminer buzzDeterminer = new BuzzDeterminerImpl();
-    private final FizzBuzzFormatter fizzBuzzFormatter = new FizzBuzzFormatterImpl();
+    private final BuzzDeterminer buzzDeterminer = mock(BuzzDeterminer.class);
+    private final FizzBuzzFormatter fizzBuzzFormatter = mock(FizzBuzzFormatter.class);
     private final FizzBuzz fizzBuzz = new FizzBuzzImpl(fizzDeterminer, buzzDeterminer, fizzBuzzFormatter);
 
 
@@ -20,6 +20,8 @@ public class FizzBuzzImplTest {
     void FizzRtnTest() {
         n = 3;
         doReturn(true).when(fizzDeterminer).isPositive(n);
+        doReturn(false).when(buzzDeterminer).isPositive(n);
+        doReturn("Fizz").when(fizzBuzzFormatter).format(true, false);
         assertEquals("Fizz", fizzBuzz.fizzBuzz(n));
     }
 
@@ -28,6 +30,8 @@ public class FizzBuzzImplTest {
     void BuzzRtnTest() {
         n = 5;
         doReturn(false).when(fizzDeterminer).isPositive(n);
+        doReturn(true).when(buzzDeterminer).isPositive(n);
+        doReturn("Buzz").when(fizzBuzzFormatter).format(false, true);
         assertEquals("Buzz", fizzBuzz.fizzBuzz(n));
     }
 
@@ -36,6 +40,8 @@ public class FizzBuzzImplTest {
     void FizzBuzzRtnTest() {
         n = 15;
         doReturn(true).when(fizzDeterminer).isPositive(n);
+        doReturn(true).when(buzzDeterminer).isPositive(n);
+        doReturn("FizzBuzz").when(fizzBuzzFormatter).format(true, true);
         assertEquals("FizzBuzz", fizzBuzz.fizzBuzz(n));
     }
 
@@ -44,6 +50,8 @@ public class FizzBuzzImplTest {
     void nonRtnTest() {
         n = 11;
         doReturn(false).when(fizzDeterminer).isPositive(n);
+        doReturn(false).when(buzzDeterminer).isPositive(n);
+        doReturn("").when(fizzBuzzFormatter).format(false, false);
         assertEquals("", fizzBuzz.fizzBuzz(n));
     }
 

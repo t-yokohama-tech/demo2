@@ -1,12 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.FizzDeterminer;
-import com.example.demo.BuzzDeterminer;
-import com.example.demo.FizzBuzzFormatter;
-
 public class FizzBuzzImpl implements FizzBuzz {
-
-    String str;
 
     private final FizzDeterminer fizzDeterminer;
     private final BuzzDeterminer buzzDeterminer;
