@@ -1,18 +1,13 @@
 package com.example.demo;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class FizzBuzzImpl implements FizzBuzz {
 
-    private final FizzDeterminer fizzDeterminer;
-    private final BuzzDeterminer buzzDeterminer;
-    private final FizzBuzzFormatter fizzBuzzFormatter;
-
-    public FizzBuzzImpl(FizzDeterminer fizzDeterminer, BuzzDeterminer buzzDeterminer, FizzBuzzFormatter fizzBuzzFormatter) {
-
-        this.fizzDeterminer = fizzDeterminer;
-        this.buzzDeterminer = buzzDeterminer;
-        this.fizzBuzzFormatter = fizzBuzzFormatter;
-    }
-
+    private FizzDeterminer fizzDeterminer;
+    private BuzzDeterminer buzzDeterminer;
+    private FizzBuzzFormatter fizzBuzzFormatter;
 
     @Override
     public String fizzBuzz(int n) {
