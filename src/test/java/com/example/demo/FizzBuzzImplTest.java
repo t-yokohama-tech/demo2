@@ -1,7 +1,6 @@
 package com.example.demo;
 
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,8 +13,6 @@ import static org.mockito.Mockito.*;
 
 public class FizzBuzzImplTest {
 
-
-    int n;
     private final FizzDeterminer fizzDeterminer = mock(FizzDeterminer.class);
     private final BuzzDeterminer buzzDeterminer = mock(BuzzDeterminer.class);
     private final FizzBuzzFormatter fizzBuzzFormatter = mock(FizzBuzzFormatter.class);
