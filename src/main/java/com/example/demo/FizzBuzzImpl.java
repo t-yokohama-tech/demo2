@@ -5,9 +5,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class FizzBuzzImpl implements FizzBuzz {
 
-    private FizzDeterminer fizzDeterminer;
-    private BuzzDeterminer buzzDeterminer;
-    private FizzBuzzFormatter fizzBuzzFormatter;
+    private final FizzDeterminer fizzDeterminer;
+    private final BuzzDeterminer buzzDeterminer;
+    private final FizzBuzzFormatter fizzBuzzFormatter;
 
     @Override
     public String fizzBuzz(int n) {
