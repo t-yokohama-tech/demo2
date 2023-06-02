@@ -2,7 +2,14 @@ package com.example.demo;
 
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 import static org.mockito.Mockito.*;
 
 public class FizzBuzzImplTest {
@@ -15,44 +22,26 @@ public class FizzBuzzImplTest {
     private final FizzBuzz fizzBuzz = new FizzBuzzImpl(fizzDeterminer, buzzDeterminer, fizzBuzzFormatter);
 
 
-    // 3の倍数　「Fizz」を返す。
-    @Test
-    void FizzRtnTest() {
-        n = 3;
-        doReturn(true).when(fizzDeterminer).isPositive(n);
-        doReturn(false).when(buzzDeterminer).isPositive(n);
-        doReturn("Fizz").when(fizzBuzzFormatter).format(true, false);
-        assertEquals("Fizz", fizzBuzz.fizzBuzz(n));
+    static Stream<Arguments> fizzBuzz() {
+        return Stream.of(
+                arguments("FizzBuzz", true, true, 15),// 3の倍数かつ5の倍数：”FizzBuzz”を返す。
+                arguments("Fizz", true, false, 3),// 3の倍数のみ：”Fizz”を返す。
+                arguments("Buzz", false, true, 5),// 5の倍数のみ：”Buzz”を返す。
+                arguments("", false, false, 11)// 3の倍数でも5の倍数でもない：””を返す。
+        );
     }
 
-    // 5の倍数　「Buzz」を返す。
-    @Test
-    void BuzzRtnTest() {
-        n = 5;
-        doReturn(false).when(fizzDeterminer).isPositive(n);
-        doReturn(true).when(buzzDeterminer).isPositive(n);
-        doReturn("Buzz").when(fizzBuzzFormatter).format(false, true);
-        assertEquals("Buzz", fizzBuzz.fizzBuzz(n));
+    // 上記４つのパターンを１メソッドでテスト。
+    @ParameterizedTest
+    @MethodSource("fizzBuzz")
+    void RtnTest(String expected, boolean fizz, boolean buzz, int n) {
+
+        doReturn(fizz).when(fizzDeterminer).isPositive(n);
+        doReturn(buzz).when(buzzDeterminer).isPositive(n);
+        doReturn(expected).when(fizzBuzzFormatter).format(fizz, buzz);
+        assertEquals(expected, fizzBuzz.fizzBuzz(n));
     }
 
-    // 3と5の倍数　「FizzBuzz」を返す。
-    @Test
-    void FizzBuzzRtnTest() {
-        n = 15;
-        doReturn(true).when(fizzDeterminer).isPositive(n);
-        doReturn(true).when(buzzDeterminer).isPositive(n);
-        doReturn("FizzBuzz").when(fizzBuzzFormatter).format(true, true);
-        assertEquals("FizzBuzz", fizzBuzz.fizzBuzz(n));
-    }
 
-    // 3の倍数でも5の倍数でもないとき　「」(空文字)を返す。
-    @Test
-    void nonRtnTest() {
-        n = 11;
-        doReturn(false).when(fizzDeterminer).isPositive(n);
-        doReturn(false).when(buzzDeterminer).isPositive(n);
-        doReturn("").when(fizzBuzzFormatter).format(false, false);
-        assertEquals("", fizzBuzz.fizzBuzz(n));
-    }
 
 }
