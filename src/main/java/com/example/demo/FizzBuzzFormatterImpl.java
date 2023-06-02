@@ -2,22 +2,21 @@ package com.example.demo;
 
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+
 @Component
-public class FizzBuzzFormatterImpl implements FizzBuzzFormatter{
+public class FizzBuzzFormatterImpl implements FizzBuzzFormatter {
 
     @Override
     public String format(boolean fizz, boolean buzz) {
-
-        if(fizz && buzz) {
-            return "FizzBuzz";
-        } else if(fizz) {
-            return "Fizz";
-        } else if(buzz) {
-            return  "Buzz";
-        } else {
-            return "";
-        }
-
+        // ガード節
+        if (fizz && buzz) return "FizzBuzz";
+        if (fizz) return "Fizz";
+        if (buzz) return "Buzz";
+        return "";
+        
     }
 
 }

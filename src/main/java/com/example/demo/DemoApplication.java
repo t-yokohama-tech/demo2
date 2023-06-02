@@ -21,6 +21,5 @@ public class DemoApplication implements CommandLineRunner {
 
 			System.out.println( String.format("%n%s : %s", n, fizzBuzz.fizzBuzz(n) ) );
 
-
 	}
 }

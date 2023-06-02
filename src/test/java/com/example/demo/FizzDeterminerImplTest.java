@@ -12,14 +12,13 @@ public class FizzDeterminerImplTest {
     //    Fizz条件に[該当]：Trueであることを確認
     @Test
     public void fizzReturnTest() {
-        int n = 3;
-        assertTrue(fizzDeterminer.isPositive(n));
+        assertTrue(fizzDeterminer.isPositive(3));
     }
 
     //    Fizz条件に[該当しない]：Falseであることを確認
     @Test
     public void nonFizzReturnTest() {
-        int n = 1;
-        assertFalse(fizzDeterminer.isPositive(n));
+        assertFalse(fizzDeterminer.isPositive(1));
     }
+
 }
