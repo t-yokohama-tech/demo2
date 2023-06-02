@@ -36,10 +36,18 @@ public class FizzBuzzImplTest {
     @MethodSource("fizzBuzz")
     void RtnTest(String expected, boolean fizz, boolean buzz, int n) {
 
-        doReturn(fizz).when(fizzDeterminer).isPositive(n);
-        doReturn(buzz).when(buzzDeterminer).isPositive(n);
-        doReturn(expected).when(fizzBuzzFormatter).format(fizz, buzz);
-        assertEquals(expected, fizzBuzz.fizzBuzz(n));
+        // mock の振る舞いを仕込む
+        doReturn(fizz).when(fizzDeterminer).isPositive(anyInt());
+        doReturn(buzz).when(buzzDeterminer).isPositive(anyInt());
+        doReturn(expected).when(fizzBuzzFormatter).format(anyBoolean(),anyBoolean());
+        // テスト対象コードを実行
+        var result = fizzBuzz.fizzBuzz(n);
+
+        // 結果の確認
+        assertEquals(expected, result);
+        verify(fizzDeterminer).isPositive(n);
+        verify(buzzDeterminer).isPositive(n);
+        verify(fizzBuzzFormatter).format(fizz,buzz);
     }
 
 
