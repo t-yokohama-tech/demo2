@@ -19,7 +19,7 @@ public class DemoApplication implements CommandLineRunner {
 
 		for( int n = 1; n < 30; n++ )
 
-			System.out.println(String.format("%n : %s", n, fizzBuzz.fizzBuzz(n)));
+			System.out.println( String.format("%n%s : %s", n, fizzBuzz.fizzBuzz(n) ) );
 
 
 	}
